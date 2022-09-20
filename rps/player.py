@@ -1,6 +1,10 @@
 from dataclasses import astuple, dataclass
+
+
+from enforce_typing import enforce_types
 from random import choice
 from typing import Iterator
+
 
 class Player:
     '''
@@ -28,8 +32,8 @@ class Player:
                 return True
             case _:
                 return False
-                
-        
+
+    @enforce_types
     @dataclass
     class Stats:
         '''
@@ -38,13 +42,11 @@ class Player:
         name:str
         cards:list[str,str,str]
         score:int = 0
-        
         def __iter__(self) -> Iterator:
             '''
                 enables iteration over each stat in the Player class
             '''
             return iter(astuple(self))
-
         
     
 

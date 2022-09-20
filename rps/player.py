@@ -15,6 +15,7 @@ class Player:
         :returns bool: True if card1 beats card2
         :raises KeyError: KeyError is raised when one of the cards are invalid 
         """
+        card1,card2 = card1.lower(),card2.lower() 
         validCards = ["rock", "paper", "scissors"]
         if card1 not in validCards or card2 not in validCards:
             raise KeyError(f"card1 or card2 is not a valid card!")
@@ -35,8 +36,8 @@ class Player:
             class that represents Player stats
         '''
         name:str
-        score:int
         cards:list[str,str,str]
+        score:int = 0
         
         def __iter__(self) -> Iterator:
             '''

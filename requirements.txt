@@ -1,0 +1,2 @@
+enforce_typing==1.0.0.post1
+pytest==7.1.2

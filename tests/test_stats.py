@@ -41,8 +41,8 @@ class stats_testing(unittest.TestCase):
         excInfo == expected_exception
     def test_stats_invalid_cards_function(self):
         expected_exception = NameError
-        with pytest.raises(expected_exception) as excInfo:
-            Player.Stats(name=42, score=0, cards=aCards())
+        with pytest.raises(expected_exception) as excInfo:            
+            Player.Stats(name=42, score=0, cards=aCards()) # type: ignore (pyLance complains about undefind function name) 
         excInfo == expected_exception
     def test_stats_invalid_cards_function_return(self):
         expected_exception = TypeError

@@ -21,8 +21,10 @@ class Game:
                     )
     def opponentCard(self):
         return choice(Game.opponentStats.cards) 
-
+    def newPlayerCard(self):
+        return 
     def draw(self) -> tuple[bool,str]:
+        print("in draw()")
         print(f"Your Cards: {self.playerStats.cards}")
         drawCard = str(input("Draw A Card: ")).lower()
         if drawCard not in self.playerStats.cards:
@@ -30,13 +32,21 @@ class Game:
         return (Player.beats(drawCard, self.opponentCard()), drawCard)
     
 def gameLoop(running=True):
+    print("in gameLoop()")
     game = Game()
     while running:
         cardDownBeat,cardDrawn = game.draw()
         if cardDownBeat:
             game.playerStats.score += 1
-            print(f"{cardDrawn} beats {game.opponentCard}")
-        print(game.playerStats.score)
-        exit()
+            game.opponentStats.score -= 1
+            print(f"{cardDrawn} beats {game.opponentCard()}")
+            print("you win this round!")
+        elif not cardDownBeat:
+            game.playerStats.score -= 1
+            game.opponentStats.score += 1
+        print(f"Your Score: {game.playerStats.score}")
+        game.playerStats.cards = Cards()
+        
 
-gameLoop()
+while True:
+    gameLoop()

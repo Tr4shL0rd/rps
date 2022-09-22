@@ -48,7 +48,7 @@ def gameLoop(running=True):
     game = Game()
     while running:
         if game.playerStats.score < 1 and game.opponentStats.score < 1 and game.gameDraws.score < 1: rprint(f"[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]")
-        if game.gameRounds.score == 10:
+        if game.gameRounds.score >= 10:
             rprint(f"[blue underline]{game.playerStats.name}'s[/blue underline] Score: {game.playerStats.score}")
             rprint(f"[red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}")
             rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}[/yellow underline]")
@@ -68,10 +68,12 @@ def gameLoop(running=True):
             
         if cardDownBeat:
             game.playerStats.score += 1
+            rprint("[green]WIN[/green]")
             rprint(f"[blue]{cardDrawn}[/blue] beats [red]{cpuCard}[/red]")
             print("You Win This Round!")
         elif not cardDownBeat:
             game.opponentStats.score += 1
+            rprint("[red]LOSS[/red]")
             rprint(f"[red]{cpuCard}[/red] beats [blue]{cardDrawn}[/blue]")
             print("You Lost This Round!")
         if cardDownBeat or not cardDownBeat:

@@ -53,9 +53,9 @@ def gameLoop(running=True):
             rprint(f"[red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}")
             rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}[/yellow underline]")
             if game.playerStats.score == 10:
-                print("YOU WIN THE GAME!!")
+                print("YOU WIN THE GAME!")
             elif game.opponentStats.score == 10:
-                print("YOU LOSE THE GAME!!")
+                print("YOU LOSE THE GAME!")
             exit()
         else:
             print(game.gameRounds.score)

@@ -7,4 +7,8 @@ RockPaperScissors
 
 # TODO
 
+- [ ] fix Invalid Card Name Glitch
+
+# DONE
+
 - [x] add automated testing 

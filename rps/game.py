@@ -20,7 +20,7 @@ class Game:
                     cards=CardClass.Cards()
                     )
     gameDraws = Player.Stats(
-                name="DRAWS",
+                name="TIE",
                 score=0,
                 cards=CardClass.Cards()
                 )
@@ -51,7 +51,7 @@ def gameLoop(running=True):
         if game.gameRounds.score >= 10:
             rprint(f"[blue underline]{game.playerStats.name}'s[/blue underline] Score: {game.playerStats.score}")
             rprint(f"[red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}")
-            rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}[/yellow underline]")
+            rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}(S)[/yellow underline]")
             if game.playerStats.score == 10:
                 print("YOU WIN THE GAME!")
             elif game.opponentStats.score == 10:
@@ -63,7 +63,7 @@ def gameLoop(running=True):
         cpuCard = game.opponentCard()
         cardDownBeat,cardDrawn = game.draw()
         if cardDrawn == cpuCard:
-            rprint("[yellow][underline]DRAW[/underline][/yellow]")
+            rprint("[yellow underline]TIE[/yellow underline]")
             game.gameDraws.score += 1
             
         if cardDownBeat:

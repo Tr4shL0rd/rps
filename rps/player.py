@@ -61,7 +61,7 @@ class CardClass:
                 choice(["rock", "paper", "scissors"]),
                 choice(["rock", "paper", "scissors"])
                 ]
-    def ColorCards(cards:list):
+    def ColorCards(cards:str):
         colors = {
             "rock":     "[grey37]rock[/grey37]",
             "paper":    "[bright_white]paper[/bright_white]",

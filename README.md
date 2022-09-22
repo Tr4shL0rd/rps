@@ -7,7 +7,8 @@ RockPaperScissors
 
 # TODO
 
-- [ ] fix Invalid Card Name Glitch
+- [ ] Fix Invalid Card Name Glitch
+- [ ] Get a better pylint score
 
 # DONE
 

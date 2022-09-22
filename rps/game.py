@@ -26,7 +26,7 @@ class Game:
                 )
     gameRounds = Player.Stats(
                 name="ROUNDS",
-                score=0,
+                score=1,
                 cards=CardClass.Cards()
                 )
     def opponentCard(self):
@@ -71,7 +71,7 @@ def gameLoop(running=True):
             rprint("[green]WIN[/green]")
             rprint(f"[blue]{cardDrawn}[/blue] beats [red]{cpuCard}[/red]")
             print("You Win This Round!")
-        elif not cardDownBeat:
+        elif not cardDownBeat and not cardDrawn == cpuCard :
             game.opponentStats.score += 1
             rprint("[red]LOSS[/red]")
             rprint(f"[red]{cpuCard}[/red] beats [blue]{cardDrawn}[/blue]")

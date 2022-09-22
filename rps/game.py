@@ -1,16 +1,15 @@
 from player import Player
 from player import CardClass
 from rich import print as rprint
-from random import choice 
+from random import choice
 
-class Game: 
+class Game:
     def __init__(self) -> None:
         pass
     player   = Player
     opponent = Player
-    
     playerStats = player.Stats(
-                name="Hero", 
+                name="Hero",
                 score=0,
                 cards=CardClass.Cards()
                 )
@@ -30,9 +29,9 @@ class Game:
                 cards=CardClass.Cards()
                 )
     def opponentCard(self):
-        return choice(Game.opponentStats.cards) 
+        return choice(Game.opponentStats.cards)
     def newPlayerCard(self):
-        return 
+        return
     def draw(self) -> tuple[bool,str]:
         Cards = CardClass
         cardStack = self.playerStats.cards
@@ -43,13 +42,14 @@ class Game:
             print(f"{drawCard} is not in your deck!")
             self.draw()
         return (Player.beats(drawCard, self.opponentCard()), drawCard)
-    
+
 def gameLoop(running=True):
     game = Game()
     while running:
-        if game.playerStats.score < 1 and game.opponentStats.score < 1 and game.gameDraws.score < 1: rprint(f"[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]")
+        if game.gameRounds.score == 1:
+            rprint(f"[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]")
         if game.gameRounds.score >= 10:
-            rprint(f"[blue underline]{game.playerStats.name}'s[/blue underline] Score: {game.playerStats.score}")
+            rprint(f"""[blue underline]{game.playerStats.name}'s[/blue underline] Score: {game.playerStats.score}""")
             rprint(f"[red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}")
             rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}(S)[/yellow underline]")
             if game.playerStats.score == 10:
@@ -71,7 +71,7 @@ def gameLoop(running=True):
             rprint("[green]WIN[/green]")
             rprint(f"[blue]{cardDrawn}[/blue] beats [red]{cpuCard}[/red]")
             print("You Win This Round!")
-        elif not cardDownBeat and not cardDrawn == cpuCard :
+        elif not cardDownBeat and not cardDrawn == cpuCard:
             game.opponentStats.score += 1
             rprint("[red]LOSS[/red]")
             rprint(f"[red]{cpuCard}[/red] beats [blue]{cardDrawn}[/blue]")

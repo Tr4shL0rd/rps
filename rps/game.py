@@ -8,7 +8,7 @@ class Game:
         pass
     player   = Player
     opponent = Player
-
+    
     playerStats = player.Stats(
                 name="Hero", 
                 score=0,
@@ -19,8 +19,13 @@ class Game:
                     score=0,
                     cards=CardClass.Cards()
                     )
-    gameStats = Player.Stats(
+    gameDraws = Player.Stats(
                 name="DRAWS",
+                score=0,
+                cards=CardClass.Cards()
+                )
+    gameRounds = Player.Stats(
+                name="ROUNDS",
                 score=0,
                 cards=CardClass.Cards()
                 )
@@ -42,12 +47,24 @@ class Game:
 def gameLoop(running=True):
     game = Game()
     while running:
-        if game.playerStats.score < 1 and game.opponentStats.score < 1 and game.gameStats.score < 1: rprint(f"[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]")
+        if game.playerStats.score < 1 and game.opponentStats.score < 1 and game.gameDraws.score < 1: rprint(f"[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]")
+        if game.gameRounds.score == 10:
+            rprint(f"[blue underline]{game.playerStats.name}'s[/blue underline] Score: {game.playerStats.score}")
+            rprint(f"[red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}")
+            rprint(f"{game.gameDraws.score} [yellow underline]{game.gameDraws.name}[/yellow underline]")
+            if game.playerStats.score == 10:
+                print("YOU WIN THE GAME!!")
+            elif game.opponentStats.score == 10:
+                print("YOU LOSE THE GAME!!")
+            exit()
+        else:
+            print(game.gameRounds.score)
+            rprint(f"Your Score: {game.playerStats.score}")
         cpuCard = game.opponentCard()
         cardDownBeat,cardDrawn = game.draw()
         if cardDrawn == cpuCard:
             rprint("[yellow][underline]DRAW[/underline][/yellow]")
-            game.gameStats.score += 1
+            game.gameDraws.score += 1
             
         if cardDownBeat:
             game.playerStats.score += 1
@@ -57,8 +74,10 @@ def gameLoop(running=True):
             game.opponentStats.score += 1
             rprint(f"[red]{cpuCard}[/red] beats [blue]{cardDrawn}[/blue]")
             print("You Lost This Round!")
+        if cardDownBeat or not cardDownBeat:
+            game.gameRounds.score += 1
+
         print("")
-        print(f"Your Score: {game.playerStats.score}")
         game.playerStats.cards = CardClass.Cards()
 try:
     while True:

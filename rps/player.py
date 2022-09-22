@@ -49,13 +49,28 @@ class Player:
             return iter(astuple(self))
         
     
-
-def Cards() -> list[str,str,str]:
-    """
-    :returns list: the list contains 3 cards of type str"
-    """
-    return [
-            choice(["rock", "paper", "scissors"]),
-            choice(["rock", "paper", "scissors"]),
-            choice(["rock", "paper", "scissors"])
-            ]
+class CardClass:
+    def __init__(self) -> None:
+        pass
+    def Cards() -> list[str,str,str]:
+        """
+        :returns list: the list contains 3 cards of type str"
+        """
+        return [
+                #choice(["[grey37]rock[/grey37]", "[bright_white]paper[/bright_white]", "[bright_magenta]scissors[/bright_magenta]"]),
+                #choice(["[grey37]rock[/grey37]", "[bright_white]paper[/bright_white]", "[bright_magenta]scissors[/bright_magenta]"]),
+                #choice(["[grey37]rock[/grey37]", "[bright_white]paper[/bright_white]", "[bright_magenta]scissors[/bright_magenta]"])
+                choice(["rock", "paper", "scissors"]),
+                choice(["rock", "paper", "scissors"]),
+                choice(["rock", "paper", "scissors"])
+                ]
+    def ColorCards(cards:list):
+        colors = {
+            "rock":     "[grey37]rock[/grey37]",
+            "paper":    "[bright_white]paper[/bright_white]",
+            "scissors": "[bright_magenta]scissors[/bright_magenta]"
+        }
+        prettyCards = []
+        for card in cards.split(", "):
+            prettyCards.append(colors[card])
+        return prettyCards

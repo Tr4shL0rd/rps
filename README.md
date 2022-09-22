@@ -2,4 +2,4 @@ RockPaperScissors
 
 
 # TODO
-- [ ] add automated testing 
+- [x] add automated testing 

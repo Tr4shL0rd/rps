@@ -1,5 +1,5 @@
 from player import Player
-from player import Cards 
+from player import CardClass
 from rich import print as rprint
 from random import choice 
 
@@ -12,26 +12,27 @@ class Game:
     playerStats = player.Stats(
                 name="Hero", 
                 score=0,
-                cards=Cards()
+                cards=CardClass.Cards()
                 )
     opponentStats = opponent.Stats(
                     name="Opponent",
                     score=0,
-                    cards=Cards()
+                    cards=CardClass.Cards()
                     )
     gameStats = Player.Stats(
                 name="DRAWS",
                 score=0,
-                cards=Cards()
+                cards=CardClass.Cards()
                 )
     def opponentCard(self):
         return choice(Game.opponentStats.cards) 
     def newPlayerCard(self):
         return 
     def draw(self) -> tuple[bool,str]:
+        Cards = CardClass
         cardStack = self.playerStats.cards
         prettyCards = ", ".join(cardStack)
-        print(f"Your Cards: {prettyCards}")
+        rprint(f"Your Cards: {', '.join(Cards.ColorCards(prettyCards))}")
         drawCard = str(input("Draw A Card: ")).lower()
         if drawCard not in self.playerStats.cards:
             print(f"{drawCard} is not in your deck!")
@@ -58,8 +59,9 @@ def gameLoop(running=True):
             print("You Lost This Round!")
         print("")
         print(f"Your Score: {game.playerStats.score}")
-        game.playerStats.cards = Cards()
-
-while True:
-    gameLoop()
-    
+        game.playerStats.cards = CardClass.Cards()
+try:
+    while True:
+        gameLoop()
+except KeyboardInterrupt:
+    print("\nExiting...")

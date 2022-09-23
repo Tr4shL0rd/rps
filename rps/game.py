@@ -71,12 +71,15 @@ def game_loop(running=True):
             )
             rprint(
                 f"""
-                [red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}
+                [red underline]
+                    {game.opponentStats.name}'s
+                [/red underline] Score: {game.opponentStats.score}
                 """
             )
             rprint(
                 f"""
-                    {game.gameDraws.score} [yellow underline]{game.gameDraws.name}(S)[/yellow underline]
+                    {game.gameDraws.score}
+                    [yellow underline]{game.gameDraws.name}(S)[/yellow underline]
                 """
             )
             if game.playerStats.score == 10:

@@ -1,16 +1,17 @@
-import sys
-import os.path
-
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-)
+"""
+    module for testing stats
+"""
 import unittest
+import pytest
 from rps.player import Player
 from rps.player import CardClass
-import pytest
 
 
-class stats_testing(unittest.TestCase):
+class StatsTesting(unittest.TestCase):
+    """
+    test suite for stats
+    """
+
     def test_stats_valid_player(self):
         """
         control test for player class
@@ -28,9 +29,9 @@ class stats_testing(unittest.TestCase):
              got int
         """
         expected_exception = TypeError
-        with pytest.raises(expected_exception) as excInfo:
+        with pytest.raises(expected_exception) as exc_info:
             Player.Stats(name=42, score=0, cards=CardClass.cards())
-        excInfo == expected_exception
+        exc_info == expected_exception  # pylint: disable=pointless-statement
 
     def test_stats_invalid_score_type(self):
         """
@@ -40,9 +41,9 @@ class stats_testing(unittest.TestCase):
 
         """
         expected_exception = TypeError
-        with pytest.raises(expected_exception) as excInfo:
+        with pytest.raises(expected_exception) as exc_info:
             Player.Stats(name="hero", score="hej", cards=CardClass.cards())
-        excInfo == expected_exception
+        exc_info == expected_exception  # pylint: disable=pointless-statement
 
     def test_stats_invalid_cards_type(self):
         """
@@ -52,9 +53,9 @@ class stats_testing(unittest.TestCase):
 
         """
         expected_exception = TypeError
-        with pytest.raises(expected_exception) as excInfo:
+        with pytest.raises(expected_exception) as exc_info:
             Player.Stats(name="Hero", score=0, cards="CardClass.Cards()")
-        excInfo == expected_exception
+        exc_info == expected_exception  # pylint: disable=pointless-statement
 
     def test_stats_invalid_cards_function(self):
         """
@@ -64,16 +65,22 @@ class stats_testing(unittest.TestCase):
 
         """
         expected_exception = NameError
-        with pytest.raises(expected_exception) as excInfo:
-            Player.Stats(name=42, score=0, cards=aCardClass.Cards())  # type: ignore (pyLance complains about undefind function name)
-        excInfo == expected_exception
+        with pytest.raises(expected_exception) as exc_nfo:
+            Player.Stats(name=42, score=0, cards=ACardClass.Cards())  # type: ignore # pylint: disable=undefined-variable
+        exc_nfo == expected_exception  # pylint: disable=pointless-statement
 
     def test_stats_invalid_cards_function_return(self):
+        """
+        test for invalid function return type
+        expected valid function return type
+             got undefined str
+
+        """
         expected_exception = TypeError
 
         def wrong_cards():
             return "i swear i'm a stack of cards!"
 
-        with pytest.raises(expected_exception) as excInfo:
+        with pytest.raises(expected_exception) as exc_info:
             Player.Stats(name=42, score=0, cards=wrong_cards())
-        excInfo == expected_exception
+        exc_info == expected_exception  # pylint: disable=pointless-statement

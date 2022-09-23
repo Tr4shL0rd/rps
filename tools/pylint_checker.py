@@ -11,7 +11,6 @@ with open("tools/reports/pylintReport.txt", "w") as f:
         "tests/test_cards.py",
         "tests/test_stats.py",
         "tools/check_reqs.py",
-        "tools/pylintChecker.py",
     ]
 
     Run(tracked_files, reporter=reporter, exit=False)

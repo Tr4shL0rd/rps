@@ -1,32 +1,45 @@
-import sys
-import os.path
-
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-)
+"""
+    module for testing beats
+"""
+import pytest
 from rps.player import Player
 
-import pytest
 
 
 def test_beats_valid_card_rock():
-    assert Player.beats("rock", "scissors") == True
+    """
+        test for rock
+    """
+    assert Player.beats("rock", "scissors") is True
 
 
 def test_beats_valid_card_scissors():
-    assert Player.beats("scissors", "paper") == True
+    """
+        test for scissors
+    """
+    assert Player.beats("scissors", "paper") is True
 
 
 def test_beats_valid_card_paper():
-    assert Player.beats("paper", "rock") == True
+    """
+        test for paper
+    """
+    assert Player.beats("paper", "rock") is True
 
 
 def test_beats_valid_card_draw():
-    assert Player.beats("paper", "paper") == False
+    """
+        test for same draw
+    """
+    assert Player.beats("paper", "paper") is False
 
 
 def test_beats_invalid():
+    """
+        test for invalid card
+    """
+
     expected_exception = KeyError
-    with pytest.raises(expected_exception=expected_exception) as excInfo:
+    with pytest.raises(expected_exception=expected_exception) as exc_info:
         Player.beats("not a rock", "rock")
-    excInfo.value == expected_exception
+    exc_info.value == expected_exception # pylint: disable=pointless-statement

@@ -1,7 +1,10 @@
-import os
-import sys
-import subprocess
-command = ["python", "-m", "pylint", "$(git", "ls-files", "'*.py'", ")"]
-if os.name == "nt":
-    command.insert(0,"powershell.exe")
-subprocess.call(command)
+from pylint.lint import Run
+from pylint.reporters.text import TextReporter
+
+with open("tools/reports/pylintReport.txt", "w") as f:
+    reporter = TextReporter(f)
+    Run(["rps"], reporter=reporter, exit=False)
+with open("tools/reports/pylintReport.txt", "r") as f:
+    lines = f.readlines()
+    for line in lines:
+        print(line.replace("\n", ""))

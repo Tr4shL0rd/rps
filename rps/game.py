@@ -22,10 +22,11 @@ class Game:
     opponentStats = opponent.Stats(name="Opponent", score=0, cards=CardClass.cards())
     gameDraws = Player.Stats(name="TIE", score=0, cards=CardClass.cards())
     gameRounds = Player.Stats(name="ROUNDS", score=1, cards=CardClass.cards())
+
+
     """
         :return str: a string containing the card the opponent uses
     """
-
     def opponent_card(self) -> str:
         """
         Game.OpponentStats.cards is a list

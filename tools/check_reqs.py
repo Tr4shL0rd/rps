@@ -1,3 +1,6 @@
+"""
+    checks the project for new imports and inserts them in the requirements.txt file
+"""
 import os
 import sys
 from rich import print as rprint

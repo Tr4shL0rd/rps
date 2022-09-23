@@ -6,40 +6,29 @@ import sys
 from player import Player
 from player import CardClass
 from rich import print as rprint
+
+
 class Game:
     """
-        tracks player, game and opponent.
+    tracks player, game and opponent.
     """
+
     def __init__(self) -> None:
         pass
+
     player = Player
     opponent = Player
-    playerStats = player.Stats(
-        name="Hero",
-        score=0,
-        cards=CardClass.cards()
-    )
-    opponentStats = opponent.Stats(
-        name="Opponent",
-        score=0,
-        cards=CardClass.cards()
-    )
-    gameDraws = Player.Stats(
-        name="TIE",
-        score=0,
-        cards=CardClass.cards()
-    )
-    gameRounds = Player.Stats(
-        name="ROUNDS",
-        score=1,
-        cards=CardClass.cards()
-    )
+    playerStats = player.Stats(name="Hero", score=0, cards=CardClass.cards())
+    opponentStats = opponent.Stats(name="Opponent", score=0, cards=CardClass.cards())
+    gameDraws = Player.Stats(name="TIE", score=0, cards=CardClass.cards())
+    gameRounds = Player.Stats(name="ROUNDS", score=1, cards=CardClass.cards())
     """
         :return str: a string containing the card the opponent uses
     """
+
     def opponent_card(self) -> str:
         """
-            Game.OpponentStats.cards is a list
+        Game.OpponentStats.cards is a list
         """
         return choice(Game.opponentStats.cards)
 
@@ -59,28 +48,37 @@ class Game:
             self.draw()
         return (Player.beats(card1=draw_card, card2=self.opponent_card()), draw_card)
 
+
 def game_loop(running=True):
     """
-        :param running bool: a boolean value dictation if the game is runnig
-        :returns:
+    :param running bool: a boolean value dictation if the game is runnig
+    :returns:
     """
     game = Game()
     while running:
         if game.gameRounds.score == 1:
-            rprint(f"""
+            rprint(
+                f"""
                     [blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]
-                    """)
+                    """
+            )
         if game.gameRounds.score >= 10:
-            rprint(f"""
+            rprint(
+                f"""
                     [blue underline]{game.playerStats.name}'s[/blue underline]"
                     Score: {game.playerStats.score}
-                    """)
-            rprint(f"""
+                    """
+            )
+            rprint(
+                f"""
                 [red underline]{game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}
-                """)
-            rprint(f"""
+                """
+            )
+            rprint(
+                f"""
                     {game.gameDraws.score} [yellow underline]{game.gameDraws.name}(S)[/yellow underline]
-                """)
+                """
+            )
             if game.playerStats.score == 10:
                 print("YOU WIN THE GAME!")
             elif game.opponentStats.score == 10:

@@ -29,7 +29,7 @@ if os.path.getsize("requirements.txt") <= 1:
     os.system("rm requirements.txt")
     sys.exit()
 print(f"{CREATION_STATUS} requirements.txt")
-with open("requirements.txt", "r",encoding="utf-8") as req:
+with open("requirements.txt", "r", encoding="utf-8") as req:
     new_lines = []
     lines = req.readlines()
     for line in lines:

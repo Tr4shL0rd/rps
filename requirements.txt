@@ -1,3 +1,4 @@
 enforce_typing==1.0.0.post1
+pylint==2.15.3
 pytest==7.1.2
 rich==12.5.1

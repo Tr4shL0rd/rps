@@ -3,6 +3,8 @@ module for testing cards
 """
 import pytest
 from rps.player import CardClass
+
+
 def test_color_cards_valid_elements():
     """
     control test

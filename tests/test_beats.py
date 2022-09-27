@@ -1,9 +1,8 @@
 """
-    module for testing beats
+module for testing beats
 """
 import pytest
 from rps.player import Player
-
 
 def test_beats_valid_card_rock():
     """

@@ -16,4 +16,4 @@
 
 
 ## IMAGE SHOWCASE
-<img src="assets/Glitch_Invalid_Card.png"/>
+![image](assets/Glitch_Invalid_Card.PNG)

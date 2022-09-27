@@ -16,4 +16,4 @@
 
 
 ## IMAGE SHOWCASE
-![image](assets/Glitch_Invalid_Card.PNG)
+![image](assets/Glitch_Invalid_Card.png)

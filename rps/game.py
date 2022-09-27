@@ -58,31 +58,11 @@ def game_loop(running=True):
     game = Game()
     while running:
         if game.gameRounds.score == 1:
-            rprint(
-                f"""
-                    [blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]
-                    """
-            )
+            rprint(f"""[blue]{Game.playerStats.name}[/blue] VS [red]{Game.opponentStats.name}[/red]""")
         if game.gameRounds.score >= 10:
-            rprint(
-                f"""
-                    [blue underline]{game.playerStats.name}'s[/blue underline]"
-                    Score: {game.playerStats.score}
-                    """
-            )
-            rprint(
-                f"""
-                [red underline]
-                    {game.opponentStats.name}'s
-                [/red underline] Score: {game.opponentStats.score}
-                """
-            )
-            rprint(
-                f"""
-                    {game.gameDraws.score}
-                    [yellow underline]{game.gameDraws.name}(S)[/yellow underline]
-                """
-            )
+            rprint(f"""[blue underline]{game.playerStats.name}'s[/blue underline]"XScore: {game.playerStats.score}""")
+            rprint(f"""[red underline] {game.opponentStats.name}'s[/red underline] Score: {game.opponentStats.score}""")
+            rprint(f"""{game.gameDraws.score}[yellow underline]{game.gameDraws.name}(S)[/yellow underline]""")
             if game.playerStats.score == 10:
                 print("YOU WIN THE GAME!")
             elif game.opponentStats.score == 10:
